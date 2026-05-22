@@ -3,522 +3,718 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reconecta Tech — Tecnología Reacondicionada | Llorente, Nariño</title>
+    <title>Sistema de Gestión - Cervecería</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #print-area, #print-area * {
+                visibility: visible;
+            }
+            #print-area {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800 font-sans">
 
-    <!-- Navegación -->
-    <nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:80;transition:all 0.4s ease;background:transparent;">
-        <div style="max-width:1280px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;">
-            <a href="#inicio" style="text-decoration:none;display:flex;align-items:center;gap:10px;">
-                <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-dim));display:flex;align-items:center;justify-content:center;">
-                    <i class="fas fa-recycle" style="color:var(--bg);font-size:18px;"></i>
-                </div>
-                <span class="font-heading" style="font-size:20px;font-weight:700;color:var(--fg);">Reconecta<span style="color:var(--accent);">Tech</span></span>
-            </a>
-            <div style="display:flex;align-items:center;gap:32px;" class="hidden md:flex">
-                <a href="#inicio" class="nav-link">Inicio</a>
-                <a href="#productos" class="nav-link">Productos</a>
-                <a href="#servicios" class="nav-link">Servicios</a>
-                <a href="#contacto" class="nav-link">Contacto</a>
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-[#005B3A] text-white p-6">
+            <div class="text-2xl font-bold mb-8 flex items-center">
+                <img src="logo.png" alt="Logo B&E" class="h-12 w-auto mr-3 bg-white rounded p-1">
+                B&E Cervecería
             </div>
-            <div style="display:flex;align-items:center;gap:16px;">
-                <button id="cartBtn" onclick="toggleCart()" style="position:relative;background:none;border:none;cursor:pointer;color:var(--fg);font-size:20px;padding:8px;" aria-label="Abrir carrito de compras">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span id="cartCount" style="position:absolute;top:0;right:0;background:var(--accent);color:var(--bg);font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;">0</span>
-                </button>
-                <button id="menuToggle" class="md:hidden" onclick="toggleMobileMenu()" style="background:none;border:none;cursor:pointer;color:var(--fg);font-size:22px;padding:8px;" aria-label="Abrir menú">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Menú móvil -->
-    <div id="mobileMenu" class="mobile-menu">
-        <button onclick="toggleMobileMenu()" style="position:absolute;top:20px;right:24px;background:none;border:none;color:var(--fg);font-size:28px;cursor:pointer;" aria-label="Cerrar menú">
-            <i class="fas fa-times"></i>
-        </button>
-        <a href="#inicio" onclick="toggleMobileMenu()">Inicio</a>
-        <a href="#productos" onclick="toggleMobileMenu()">Productos</a>
-        <a href="#servicios" onclick="toggleMobileMenu()">Servicios</a>
-        <a href="#contacto" onclick="toggleMobileMenu()">Contacto</a>
-    </div>
-
-    <!-- Hero Section -->
-    <header id="inicio" style="position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;">
-        <div class="hero-bg"></div>
-        <div class="grid-pattern"></div>
-        <div id="particles" style="position:absolute;inset:0;z-index:1;pointer-events:none;"></div>
-        <div style="position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:120px 24px 80px;width:100%;">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;" class="hero-grid">
-                <div>
-                    <div style="display:inline-flex;align-items:center;gap:8px;background:var(--accent-glow);border:1px solid rgba(0,230,138,0.2);border-radius:30px;padding:6px 16px;margin-bottom:24px;">
-                        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);"></div>
-                        <span style="font-size:13px;color:var(--accent);font-weight:500;">Desde Llorente, Nariño para todo Colombia</span>
-                    </div>
-                    <h1 class="font-heading" style="font-size:clamp(36px,5.5vw,68px);font-weight:700;line-height:1.05;margin-bottom:24px;">
-                        Tecnología<br>
-                        <span style="background:linear-gradient(135deg,var(--accent),var(--warm));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">reacondicionada</span><br>
-                        que confías
-                    </h1>
-                    <p style="font-size:18px;color:var(--fg-muted);line-height:1.7;max-width:480px;margin-bottom:36px;">
-                        Celulares y computadores restaurados con garantía real. Asesoría personalizada, mantenimiento y reparación profesional en un solo lugar.
-                    </p>
-                    <div style="display:flex;gap:14px;flex-wrap:wrap;">
-                        <a href="#productos" class="btn-primary" style="font-size:16px;padding:16px 32px;text-decoration:none;">
-                            <i class="fas fa-search" style="margin-right:8px;"></i>Explorar equipos
-                        </a>
-                        <a href="#servicios" class="btn-outline" style="font-size:16px;padding:16px 32px;text-decoration:none;">
-                            Nuestros servicios
-                        </a>
-                    </div>
-                    <div style="display:flex;gap:32px;margin-top:40px;">
-                        <div>
-                            <div style="font-family:'Space Grotesk';font-size:28px;font-weight:700;color:var(--fg);">500+</div>
-                            <div style="font-size:13px;color:var(--fg-muted);">Equipos vendidos</div>
-                        </div>
-                        <div style="width:1px;background:var(--border);"></div>
-                        <div>
-                            <div style="font-family:'Space Grotesk';font-size:28px;font-weight:700;color:var(--fg);">3 meses</div>
-                            <div style="font-size:13px;color:var(--fg-muted);">Garantía incluida</div>
-                        </div>
-                        <div style="width:1px;background:var(--border);"></div>
-                        <div>
-                            <div style="font-family:'Space Grotesk';font-size:28px;font-weight:700;color:var(--fg);">4.8<i class="fas fa-star" style="font-size:14px;color:var(--warm);margin-left:4px;"></i></div>
-                            <div style="font-size:13px;color:var(--fg-muted);">Calificación</div>
-                        </div>
-                    </div>
-                </div>
-                <div style="position:relative;" class="hidden md:block">
-                    <div id="heroShowcase" style="position:relative;width:100%;aspect-ratio:1;max-width:500px;margin:0 auto;">
-                        <!-- Las imágenes del hero se generan con JS -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Barra de confianza -->
-    <section style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-secondary);">
-        <div style="max-width:1280px;margin:0 auto;padding:20px 24px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap;">
-            <div style="display:flex;align-items:center;gap:10px;color:var(--fg-muted);font-size:14px;">
-                <i class="fas fa-shield-halved" style="color:var(--accent);font-size:18px;"></i>
-                <span>Garantía de 3 meses</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;color:var(--fg-muted);font-size:14px;">
-                <i class="fas fa-truck" style="color:var(--accent);font-size:18px;"></i>
-                <span>Envíos a todo Llorente y Tumaco</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;color:var(--fg-muted);font-size:14px;">
-                <i class="fas fa-rotate-left" style="color:var(--accent);font-size:18px;"></i>
-                <span>Devolución en 7 días</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;color:var(--fg-muted);font-size:14px;">
-                <i class="fas fa-tools" style="color:var(--accent);font-size:18px;"></i>
-                <span>Técnicos certificados</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Informativa: Productos Remanufacturados -->
-    <section style="background:var(--bg);border-bottom:1px solid var(--border);">
-        <div style="max-width:1280px;margin:0 auto;padding:80px 24px;">
-            <div class="reveal" style="text-align:center;margin-bottom:60px;">
-                <div class="section-divider" style="margin:0 auto 16px;"></div>
-                <h2 class="font-heading" style="font-size:clamp(28px,4vw,42px);font-weight:700;margin-bottom:12px;">¿Qué significan nuestros productos remanufacturados?</h2>
-                <p style="color:var(--fg-muted);font-size:16px;max-width:680px;margin:0 auto;line-height:1.7;">Entendemos que es importante saber qué estás comprando. Te explicamos de forma transparente qué hace que nuestros equipos sean una excelente opción.</p>
-            </div>
-
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px;">
-                <!-- Card 1: Remanufacturados -->
-                <div class="reveal" style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden;">
-                    <div style="position:absolute;top:-20px;right:-20px;width:120px;height:120px;background:radial-gradient(circle, rgba(0,230,138,0.1) 0%, transparent 70%);border-radius:50%;"></div>
-                    <div style="position:relative;z-index:1;">
-                        <div style="width:56px;height:56px;border-radius:14px;background:rgba(0,230,138,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-                            <i class="fas fa-hammer" style="color:var(--accent);font-size:24px;"></i>
-                        </div>
-                        <h3 class="font-heading" style="font-size:20px;font-weight:700;margin-bottom:12px;color:var(--fg);">Remanufacturados</h3>
-                        <p style="color:var(--fg-muted);font-size:15px;line-height:1.7;margin-bottom:16px;">Cada equipo ha sido sometido a un riguroso proceso de restauración. Nuestros técnicos certificados reemplazan piezas desgastadas, limpian completamente los dispositivos y realizan pruebas exhaustivas para garantizar su funcionamiento óptimo.</p>
-                        <div style="border-top:1px solid var(--border);padding-top:16px;">
-                            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--accent);font-weight:600;">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Proceso de 20 puntos de verificación</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2: Segunda Mano en Buenas Condiciones -->
-                <div class="reveal" style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden;" style="animation-delay:0.1s;">
-                    <div style="position:absolute;top:-20px;right:-20px;width:120px;height:120px;background:radial-gradient(circle, rgba(240,192,64,0.1) 0%, transparent 70%);border-radius:50%;"></div>
-                    <div style="position:relative;z-index:1;">
-                        <div style="width:56px;height:56px;border-radius:14px;background:rgba(240,192,64,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-                            <i class="fas fa-star" style="color:var(--warm);font-size:24px;"></i>
-                        </div>
-                        <h3 class="font-heading" style="font-size:20px;font-weight:700;margin-bottom:12px;color:var(--fg);">Segunda Mano, Excelente Estado</h3>
-                        <p style="color:var(--fg-muted);font-size:15px;line-height:1.7;margin-bottom:16px;">Nuestros productos son equipos de segunda mano que hemos seleccionado cuidadosamente. Aunque tienen uso previo, todos cumplen con altos estándares de calidad. Clasificamos cada dispositivo por su condición (A, B o C) para que sepas exactamente qué esperar.</p>
-                        <div style="border-top:1px solid var(--border);padding-top:16px;">
-                            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--warm);font-weight:600;">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Condiciones garantizadas y auténticas</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3: Importados del Extranjero -->
-                <div class="reveal" style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden;" style="animation-delay:0.2s;">
-                    <div style="position:absolute;top:-20px;right:-20px;width:120px;height:120px;background:radial-gradient(circle, rgba(100,180,255,0.1) 0%, transparent 70%);border-radius:50%;"></div>
-                    <div style="position:relative;z-index:1;">
-                        <div style="width:56px;height:56px;border-radius:14px;background:rgba(100,180,255,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-                            <i class="fas fa-globe" style="color:#64b4ff;font-size:24px;"></i>
-                        </div>
-                        <h3 class="font-heading" style="font-size:20px;font-weight:700;margin-bottom:12px;color:var(--fg);">Importados del Extranjero</h3>
-                        <p style="color:var(--fg-muted);font-size:15px;line-height:1.7;margin-bottom:16px;">Traemos equipos de calidad internacional desde mercados especializados en tecnología remanufacturada. Esto nos permite ofrecerte marcas premium a precios accesibles, sin perder calidad ni garantía. Todos los equipos cumplen con regulaciones internacionales.</p>
-                        <div style="border-top:1px solid var(--border);padding-top:16px;">
-                            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#64b4ff;font-weight:600;">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Certificados internacionalmente</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Callout informativo adicional -->
-            <div class="reveal" style="margin-top:60px;background:linear-gradient(135deg, rgba(0,230,138,0.08), rgba(240,192,64,0.05));border:1px solid var(--border);border-radius:16px;padding:32px;text-align:center;">
-                <i class="fas fa-lightbulb" style="color:var(--accent);font-size:32px;margin-bottom:16px;"></i>
-                <h3 class="font-heading" style="font-size:20px;font-weight:700;margin-bottom:12px;color:var(--fg);">¿Por qué elegir remanufacturado?</h3>
-                <p style="color:var(--fg-muted);font-size:15px;line-height:1.7;max-width:700px;margin:0 auto;">Obtienes tecnología de calidad certificada a una fracción del precio original. Además, al reutilizar equipos, contribuimos juntos con el medio ambiente. <strong style="color:var(--fg);">No estás comprando "basura"</strong>, estás adquiriendo un producto restaurado profesionalmente con <strong style="color:var(--accent);">3 meses de garantía incluida</strong>.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Productos -->
-    <main>
-        <section id="productos" style="max-width:1280px;margin:0 auto;padding:100px 24px;">
-            <div class="reveal">
-                <div class="section-divider" style="margin-bottom:16px;"></div>
-                <h2 class="font-heading" style="font-size:clamp(28px,4vw,42px);font-weight:700;margin-bottom:8px;">Equipos disponibles</h2>
-                <p style="color:var(--fg-muted);font-size:16px;margin-bottom:40px;">Cada equipo pasa por un proceso de 20 puntos de verificación antes de ser publicado.</p>
-            </div>
-
-            <!-- Filtros -->
-            <div class="reveal" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;">
-                <button class="filter-btn active" onclick="filterProducts('todos', this)">Todos</button>
-                <button class="filter-btn" onclick="filterProducts('celular', this)"><i class="fas fa-mobile-alt" style="margin-right:6px;"></i>Celulares</button>
-                <button class="filter-btn" onclick="filterProducts('computador', this)"><i class="fas fa-laptop" style="margin-right:6px;"></i>Computadores</button>
-                <button class="filter-btn" onclick="filterProducts('tablet', this)"><i class="fas fa-tablet-alt" style="margin-right:6px;"></i>Tablets</button>
-                <button class="filter-btn" onclick="filterProducts('accesorio', this)"><i class="fas fa-headphones" style="margin-right:6px;"></i>Accesorios</button>
-            </div>
-
-            <!-- Grid de productos -->
-            <div id="productsGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:24px;">
-                <!-- Se llena con JS -->
-            </div>
-        </section>
-
-        <!-- Servicios -->
-        <section id="servicios" style="background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-            <div style="max-width:1280px;margin:0 auto;padding:100px 24px;">
-                <div class="reveal" style="text-align:center;margin-bottom:60px;">
-                    <div class="section-divider" style="margin:0 auto 16px;"></div>
-                    <h2 class="font-heading" style="font-size:clamp(28px,4vw,42px);font-weight:700;margin-bottom:8px;">Nuestros servicios</h2>
-                    <p style="color:var(--fg-muted);font-size:16px;max-width:560px;margin:0 auto;">Más que una tienda, somos tu aliado tecnológico en Llorente y la región.</p>
-                </div>
-                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
-                    <div class="service-card reveal">
-                        <div class="service-icon" style="background:rgba(0,230,138,0.1);color:var(--accent);">
-                            <i class="fas fa-comments"></i>
-                        </div>
-                        <h3 class="font-heading" style="font-size:20px;font-weight:600;margin-bottom:12px;">Asesoría de compra</h3>
-                        <p style="color:var(--fg-muted);font-size:14px;line-height:1.7;">Te ayudamos a elegir el equipo ideal según tus necesidades y presupuesto. Evaluamos contigo las especificaciones técnicas para que tomes la mejor decisión.</p>
-                    </div>
-                    <div class="service-card reveal">
-                        <div class="service-icon" style="background:rgba(240,192,64,0.1);color:var(--warm);">
-                            <i class="fas fa-screwdriver-wrench"></i>
-                        </div>
-                        <h3 class="font-heading" style="font-size:20px;font-weight:600;margin-bottom:12px;">Mantenimiento</h3>
-                        <p style="color:var(--fg-muted);font-size:14px;line-height:1.7;">Limpieza profunda, cambio de pasta térmica, actualización de software y optimización de sistema para que tu equipo funcione como nuevo.</p>
-                    </div>
-                    <div class="service-card reveal">
-                        <div class="service-icon" style="background:rgba(255,77,106,0.1);color:var(--danger);">
-                            <i class="fas fa-microchip"></i>
-                        </div>
-                        <h3 class="font-heading" style="font-size:20px;font-weight:600;margin-bottom:12px;">Reparación</h3>
-                        <p style="color:var(--fg-muted);font-size:14px;line-height:1.7;">Cambio de pantallas, baterías, conectores de carga, placas y más. Diagnóstico gratuito y presupuesto antes de intervenir tu equipo.</p>
-                    </div>
-                    <div class="service-card reveal">
-                        <div class="service-icon" style="background:rgba(100,180,255,0.1);color:#64b4ff;">
-                            <i class="fas fa-arrow-right-arrow-left"></i>
-                        </div>
-                        <h3 class="font-heading" style="font-size:20px;font-weight:600;margin-bottom:12px;">Compra tu usado</h3>
-                        <p style="color:var(--fg-muted);font-size:14px;line-height:1.7;">¿Tienes un equipo que ya no usas? Te lo compramos a precio justo, lo reacondicionamos y le damos una segunda vida responsable.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Proceso de reacondicionamiento -->
-        <section style="max-width:1280px;margin:0 auto;padding:100px 24px;">
-            <div class="reveal" style="text-align:center;margin-bottom:60px;">
-                <div class="section-divider" style="margin:0 auto 16px;"></div>
-                <h2 class="font-heading" style="font-size:clamp(28px,4vw,42px);font-weight:700;margin-bottom:8px;">Proceso de reacondicionamiento</h2>
-                <p style="color:var(--fg-muted);font-size:16px;">20 puntos de control para garantizar la calidad de cada equipo.</p>
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;position:relative;">
-                <!-- Línea conectora -->
-                <div style="position:absolute;top:40px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--border),var(--accent),var(--border),transparent);z-index:0;" class="hidden md:block"></div>
-                <div class="reveal" style="text-align:center;position:relative;z-index:1;">
-                    <div style="width:56px;height:56px;border-radius:50%;background:var(--card);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Space Grotesk';font-weight:700;color:var(--accent);font-size:20px;">1</div>
-                    <h4 class="font-heading" style="font-size:16px;font-weight:600;margin-bottom:8px;">Recepción</h4>
-                    <p style="font-size:13px;color:var(--fg-muted);">Evaluación inicial y registro del equipo</p>
-                </div>
-                <div class="reveal" style="text-align:center;position:relative;z-index:1;">
-                    <div style="width:56px;height:56px;border-radius:50%;background:var(--card);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Space Grotesk';font-weight:700;color:var(--accent);font-size:20px;">2</div>
-                    <h4 class="font-heading" style="font-size:16px;font-weight:600;margin-bottom:8px;">Diagnóstico</h4>
-                    <p style="font-size:13px;color:var(--fg-muted);">Revisión hardware y software completa</p>
-                </div>
-                <div class="reveal" style="text-align:center;position:relative;z-index:1;">
-                    <div style="width:56px;height:56px;border-radius:50%;background:var(--card);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Space Grotesk';font-weight:700;color:var(--accent);font-size:20px;">3</div>
-                    <h4 class="font-heading" style="font-size:16px;font-weight:600;margin-bottom:8px;">Reparación</h4>
-                    <p style="font-size:13px;color:var(--fg-muted);">Cambio de componentes si es necesario</p>
-                </div>
-                <div class="reveal" style="text-align:center;position:relative;z-index:1;">
-                    <div style="width:56px;height:56px;border-radius:50%;background:var(--card);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Space Grotesk';font-weight:700;color:var(--accent);font-size:20px;">4</div>
-                    <h4 class="font-heading" style="font-size:16px;font-weight:600;margin-bottom:8px;">Estética</h4>
-                    <p style="font-size:13px;color:var(--fg-muted);">Limpieza, pulido y presentación impecable</p>
-                </div>
-                <div class="reveal" style="text-align:center;position:relative;z-index:1;">
-                    <div style="width:56px;height:56px;border-radius:50%;background:var(--card);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Space Grotesk';font-weight:700;color:var(--accent);font-size:20px;"><i class="fas fa-check" style="font-size:18px;"></i></div>
-                    <h4 class="font-heading" style="font-size:16px;font-weight:600;margin-bottom:8px;">Certificación</h4>
-                    <p style="font-size:13px;color:var(--fg-muted);">Prueba final y asignación de condición</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Estadísticas -->
-        <section style="background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-            <div style="max-width:1280px;margin:0 auto;padding:60px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;">
-                <div class="stat-item reveal">
-                    <div class="stat-number" data-target="527">0</div>
-                    <div style="color:var(--fg-muted);font-size:14px;margin-top:8px;">Equipos vendidos</div>
-                </div>
-                <div class="stat-item reveal">
-                    <div class="stat-number" data-target="380">0</div>
-                    <div style="color:var(--fg-muted);font-size:14px;margin-top:8px;">Reparaciones realizadas</div>
-                </div>
-                <div class="stat-item reveal">
-                    <div class="stat-number" data-target="98">0</div>
-                    <div style="color:var(--fg-muted);font-size:14px;margin-top:8px;">% Satisfacción</div>
-                </div>
-                <div class="stat-item reveal">
-                    <div class="stat-number" data-target="2">0</div>
-                    <div style="color:var(--fg-muted);font-size:14px;margin-top:8px;">Años de experiencia</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contacto -->
-        <section id="contacto" style="max-width:1280px;margin:0 auto;padding:100px 24px;">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;" class="contact-grid">
-                <div class="reveal">
-                    <div class="section-divider" style="margin-bottom:16px;"></div>
-                    <h2 class="font-heading" style="font-size:clamp(28px,4vw,42px);font-weight:700;margin-bottom:8px;">Contáctanos</h2>
-                    <p style="color:var(--fg-muted);font-size:16px;margin-bottom:36px;line-height:1.7;">Visítanos en nuestra sede o escríbenos. Te asesoramos sin compromiso.</p>
-
-                    <div style="display:flex;flex-direction:column;gap:24px;">
-                        <div style="display:flex;gap:16px;align-items:flex-start;">
-                            <div style="width:44px;height:44px;border-radius:12px;background:var(--accent-glow);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                <i class="fas fa-map-marker-alt" style="color:var(--accent);"></i>
-                            </div>
-                            <div>
-                                <div style="font-weight:600;margin-bottom:4px;">Sede principal</div>
-                                <div style="color:var(--fg-muted);font-size:14px;">Llorente, Nariño - Colombia</div>
-                                <div style="color:var(--fg-muted);font-size:14px;">Calle principal #12-45, Local 3</div>
-                            </div>
-                        </div>
-                        <div style="display:flex;gap:16px;align-items:flex-start;">
-                            <div style="width:44px;height:44px;border-radius:12px;background:var(--accent-glow);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                <i class="fas fa-phone" style="color:var(--accent);"></i>
-                            </div>
-                            <div>
-                                <div style="font-weight:600;margin-bottom:4px;">WhatsApp</div>
-                                <div style="color:var(--fg-muted);font-size:14px;">+57 321 456 7890</div>
-                            </div>
-                        </div>
-                        <div style="display:flex;gap:16px;align-items:flex-start;">
-                            <div style="width:44px;height:44px;border-radius:12px;background:var(--accent-glow);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                <i class="fas fa-clock" style="color:var(--accent);"></i>
-                            </div>
-                            <div>
-                                <div style="font-weight:600;margin-bottom:4px;">Horario de atención</div>
-                                <div style="color:var(--fg-muted);font-size:14px;">Lunes a Sábado: 8:00 AM - 6:00 PM</div>
-                                <div style="color:var(--fg-muted);font-size:14px;">Domingos: Cerrado</div>
-                            </div>
-                        </div>
-                        <div style="display:flex;gap:12px;margin-top:8px;">
-                            <a href="#" style="width:40px;height:40px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--fg-muted);transition:all 0.3s ease;text-decoration:none;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--fg-muted)'" aria-label="Instagram">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="#" style="width:40px;height:40px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--fg-muted);transition:all 0.3s ease;text-decoration:none;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--fg-muted)'" aria-label="Facebook">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" style="width:40px;height:40px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--fg-muted);transition:all 0.3s ease;text-decoration:none;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--fg-muted)'" aria-label="TikTok">
-                                <i class="fab fa-tiktok"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="reveal">
-                    <form id="contactForm" onsubmit="handleContactSubmit(event)" style="display:flex;flex-direction:column;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;">
-                        <h3 class="font-heading" style="font-size:20px;font-weight:600;margin-bottom:4px;">Envíanos un mensaje</h3>
-                        <p style="color:var(--fg-muted);font-size:13px;margin-bottom:8px;">Te responderemos en menos de 2 horas.</p>
-                        <div>
-                            <label style="font-size:13px;font-weight:500;display:block;margin-bottom:6px;">Nombre completo</label>
-                            <input type="text" class="form-input" placeholder="Ej: María López" required>
-                        </div>
-                        <div>
-                            <label style="font-size:13px;font-weight:500;display:block;margin-bottom:6px;">WhatsApp</label>
-                            <input type="tel" class="form-input" placeholder="+57 300 123 4567" required>
-                        </div>
-                        <div>
-                            <label style="font-size:13px;font-weight:500;display:block;margin-bottom:6px;">¿En qué te podemos ayudar?</label>
-                            <select class="form-input" required>
-                                <option value="" disabled selected>Selecciona una opción</option>
-                                <option value="compra">Quiero comprar un equipo</option>
-                                <option value="asesoria">Necesito asesoría</option>
-                                <option value="reparacion">Quiero reparar mi equipo</option>
-                                <option value="mantenimiento">Mantenimiento preventivo</option>
-                                <option value="vender">Quiero vender mi equipo usado</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label style="font-size:13px;font-weight:500;display:block;margin-bottom:6px;">Mensaje</label>
-                            <textarea class="form-input" placeholder="Cuéntanos más detalles..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary" style="width:100%;margin-top:8px;font-size:15px;padding:16px;">
-                            <i class="fas fa-paper-plane" style="margin-right:8px;"></i>Enviar mensaje
+            <nav>
+                <ul class="space-y-2">
+                    <!-- <li>
+                        <button onclick="showSection('ventas')" class="w-full text-left py-2 px-4 rounded hover:bg-[#00422a] transition-colors flex items-center">
+                            <i class="fas fa-cash-register mr-3"></i> Punto de Venta (POS)
                         </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
+                    </li> -->
+                    <li>
+                        <button onclick="showSection('inventario')" class="w-full text-left py-2 px-4 rounded hover:bg-[#00422a] transition-colors flex items-center">
+                            <i class="fas fa-boxes mr-3"></i> Gestión de Inventario
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showSection('clientes')" class="w-full text-left py-2 px-4 rounded hover:bg-[#00422a] transition-colors flex items-center">
+                            <i class="fas fa-users mr-3"></i> Gestión de Clientes
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showSection('proveedores')" class="w-full text-left py-2 px-4 rounded hover:bg-[#00422a] transition-colors flex items-center">
+                            <i class="fas fa-truck mr-3"></i> Gestión de Proveedores
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showSection('produccion')" class="w-full text-left py-2 px-4 rounded hover:bg-[#00422a] transition-colors flex items-center">
+                            <i class="fas fa-industry mr-3"></i> Dashboard Producción
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
 
-    <!-- Footer -->
-    <footer style="border-top:1px solid var(--border);background:var(--bg-secondary);">
-        <div style="max-width:1280px;margin:0 auto;padding:48px 24px 24px;">
-            <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;" class="footer-grid">
-                <div>
-                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-                        <div style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--accent),var(--accent-dim));display:flex;align-items:center;justify-content:center;">
-                            <i class="fas fa-recycle" style="color:var(--bg);font-size:15px;"></i>
+        <!-- Main Content -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <div class="flex justify-end mb-6">
+                <button id="notification-bell" onclick="openNotificationsModal()" class="relative inline-flex items-center px-4 py-2 rounded-full bg-yellow-500 text-white hover:bg-yellow-600 transition-colors shadow">
+                    <i class="fas fa-bell"></i>
+                    <span class="ml-2 hidden sm:inline">Alertas</span>
+                    <span id="notification-bell-count" class="absolute top-0 right-0 -mt-1 -mr-1 inline-flex items-center justify-center px-2 py-1 text-[10px] font-bold leading-none text-white bg-red-600 rounded-full hidden">0</span>
+                </button>
+            </div>
+
+
+            <!-- Sección de Inventario -->
+            <section id="inventario" class="section active fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-3xl font-bold text-gray-700">Gestión de Inventario</h1>
+                    <button onclick="openAddProductModal()" class="bg-[#005B3A] text-white px-4 py-2 rounded-md hover:bg-[#00422a] transition-colors">
+                        <i class="fas fa-plus-circle"></i> Añadir Producto / Material
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                    <!-- Inventario para Ventas -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <h2 class="text-xl font-bold p-4 bg-gray-100 text-[#005B3A] border-b"><i class="fas fa-beer mr-2"></i> Inventario para Ventas (Productos Finales)</h2>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="p-3">SKU</th>
+                                        <th class="p-3">Nombre</th>
+                                        <th class="p-3">Precio</th>
+                                        <th class="p-3">Stock</th>
+                                        <th class="p-3">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="inventory-final-table-body">
+                                    <!-- Productos Finales -->
+                                </tbody>
+                            </table>
                         </div>
-                        <span class="font-heading" style="font-size:18px;font-weight:700;">Reconecta<span style="color:var(--accent);">Tech</span></span>
                     </div>
-                    <p style="color:var(--fg-muted);font-size:14px;line-height:1.7;max-width:300px;">Tecnología reacondicionada con garantía real. Damos una segunda vida a los equipos y una primera oportunidad a tu bolsillo.</p>
-                </div>
-                <div>
-                    <h4 class="font-heading" style="font-size:14px;font-weight:600;margin-bottom:16px;color:var(--fg);">Tienda</h4>
-                    <div style="display:flex;flex-direction:column;gap:10px;">
-                        <a href="#productos" style="color:var(--fg-muted);font-size:14px;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--fg-muted)'">Celulares</a>
-                        <a href="#productos" style="color:var(--fg-muted);font-size:14px;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--fg-muted)'">Computadores</a>
-                        <a href="#productos" style="color:var(--fg-muted);font-size:14px;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--fg-muted)'">Tablets</a>
-                        <a href="#productos" style="color:var(--fg-muted);font-size:14px;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--fg-muted)'">Accesorios</a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-heading" style="font-size:14px;font-weight:600;margin-bottom:16px;color:var(--fg);">Servicios</h4>
-                    <div style="display:flex;flex-direction:column;gap:10px;">
-                        <a href="#servicios" style="color:var(--fg-muted);font-size:14px;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--fg-muted)'">Asesoría</a>
-                        <a href="#servicios" style="color:var(--fg-muted);font-size:14px;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--fg-muted)'">Mantenimiento</a>
-                        <a href="#servicios" style="color:var(--fg-muted);font-size:14px;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--fg-muted)'">Reparación</a>
-                        <a href="#servicios" style="color:var(--fg-muted);font-size:14px;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--fg-muted)'">Compra tu usado</a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-heading" style="font-size:14px;font-weight:600;margin-bottom:16px;color:var(--fg);">Legal</h4>
-                    <div style="display:flex;flex-direction:column;gap:10px;">
-                        <a href="#" style="color:var(--fg-muted);font-size:14px;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--fg-muted)'">Política de garantía</a>
-                        <a href="#" style="color:var(--fg-muted);font-size:14px;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--fg-muted)'">Devoluciones</a>
-                        <a href="#" style="color:var(--fg-muted);font-size:14px;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--fg-muted)'">Privacidad</a>
-                        <a href="#" style="color:var(--fg-muted);font-size:14px;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--fg-muted)'">Términos</a>
-                    </div>
-                </div>
-            </div>
-            <div style="border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
-                <p style="color:var(--fg-muted);font-size:13px;">2024 ReconectaTech. Todos los derechos reservados.</p>
-                <p style="color:var(--fg-muted);font-size:13px;">Hecho con <i class="fas fa-heart" style="color:var(--accent);font-size:11px;"></i> en Llorente, Nariño</p>
-            </div>
-        </div>
-    </footer>
 
-    <!-- Badge flotante de garantía -->
-    <div class="warranty-float">
-        <i class="fas fa-shield-halved" style="color:var(--accent);font-size:20px;"></i>
-        <div>
-            <div style="font-size:13px;font-weight:600;">Garantía incluida</div>
-            <div style="font-size:11px;color:var(--fg-muted);">3 meses en todos los equipos</div>
+                    <!-- Control de Materia Prima -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <h2 class="text-xl font-bold p-4 bg-gray-100 text-amber-700 border-b"><i class="fas fa-seedling mr-2"></i> Control de Materia Prima (Producción)</h2>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="p-3">SKU</th>
+                                        <th class="p-3">Nombre</th>
+                                        <th class="p-3">Precio Compra</th>
+                                        <th class="p-3">Stock</th>
+                                        <th class="p-3">Mín. Alerta</th>
+                                        <th class="p-3">Proveedor</th>
+                                        <th class="p-3">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="inventory-raw-table-body">
+                                    <!-- Materia Prima -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección de Clientes -->
+            <section id="clientes" class="section fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-3xl font-bold text-gray-700">Gestión de Clientes</h1>
+                    <button onclick="openAddClientModal()" class="bg-[#005B3A] text-white px-4 py-2 rounded-md hover:bg-[#00422a] transition-colors">
+                        <i class="fas fa-user-plus"></i> Registrar Nuevo Cliente
+                    </button>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-200">
+                            <tr>
+                                <th class="p-4">NIT / DV</th>
+                                <th class="p-4">Razón Social</th>
+                                <th class="p-4">Nombre Comercial</th>
+                                <th class="p-4">Ciudad</th>
+                                <th class="p-4">Correo</th>
+                                <th class="p-4">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clients-table-body">
+                            <!-- Los clientes se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección de Proveedores -->
+            <section id="proveedores" class="section fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-3xl font-bold text-gray-700">Gestión de Proveedores</h1>
+                    <button onclick="openAddSupplierModal()" class="bg-[#005B3A] text-white px-4 py-2 rounded-md hover:bg-[#00422a] transition-colors">
+                        <i class="fas fa-truck-loading"></i> Registrar Proveedor
+                    </button>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-200">
+                            <tr>
+                                <th class="p-4">NIT / Cédula</th>
+                                <th class="p-4">Tipo</th>
+                                <th class="p-4">Nombre / Razón Social</th>
+                                <th class="p-4">Teléfono</th>
+                                <th class="p-4">Correo</th>
+                                <th class="p-4">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="suppliers-table-body">
+                            <!-- Los proveedores se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Dashboard de Producción y Bodegas -->
+            <section id="produccion" class="section fade-in">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-3xl font-bold text-gray-800">Dashboard de Producción</h1>
+                    <div class="flex gap-2 items-center">
+                        <button onclick="openRecipeModal()" class="bg-gray-600 text-white px-3 py-1.5 rounded text-sm"><i class="fas fa-book"></i> Recetas</button>
+                        <button onclick="openRecipeListModal()" class="bg-[#005B3A] text-white px-3 py-1.5 rounded text-sm"><i class="fas fa-list"></i> Ver Recetas Guardadas</button>
+                        <button onclick="openTankModal()" class="bg-gray-600 text-white px-3 py-1.5 rounded text-sm"><i class="fas fa-flask"></i> Configurar Tanques</button>
+                        <!-- <button onclick="runProductionFlow()" class="bg-green-600 hover:bg-green-500 text-white px-4 py-1.5 rounded text-sm font-bold shadow-md"><i class="fas fa-play"></i> Ejecutar MPS a 4 Semanas</button> -->
+                    </div>
+                </div>
+
+                <!-- Pestañas -->
+                <div class="flex border-b border-gray-200 mb-6">
+                    <button onclick="switchProductionTab('nueva')" id="tab-btn-nueva" class="py-2 px-6 font-bold text-[#005B3A] border-b-2 border-[#005B3A]">Nueva Producción</button>
+                    <button onclick="switchProductionTab('seguimiento')" id="tab-btn-seguimiento" class="py-2 px-6 font-bold text-gray-500 hover:text-[#005B3A] border-b-2 border-transparent hover:border-gray-300 transition-all">Seguimiento de Lotes</button>
+                    <button onclick="switchProductionTab('planeacion')" id="tab-btn-planeacion" class="py-2 px-6 font-bold text-gray-500 hover:text-[#005B3A] border-b-2 border-transparent hover:border-gray-300 transition-all">Planeación (MPS/MRP)</button>
+                </div>
+
+                <!-- Tab: Nueva Producción (Wizard) -->
+                <div id="tab-nueva" class="fade-in">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <h2 class="text-xl font-bold mb-6 text-gray-700">Asistente de Producción (Paso a Paso)</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Paso 1 -->
+                            <div class="border rounded-lg p-4 bg-gray-50 flex flex-col">
+                                <h3 class="font-bold text-[#005B3A] mb-3"><span class="bg-[#005B3A] text-white rounded-full w-6 h-6 inline-flex items-center justify-center mr-2">1</span> Receta y Volumen</h3>
+                                <select id="wizard-product" class="w-full p-2 border border-gray-300 rounded-md mb-3" onchange="wizardCheckIngredients()">
+                                    <option value="">-- Producto --</option>
+                                </select>
+                                <input type="number" id="wizard-qty" placeholder="Volumen a producir (Litros)" class="w-full p-2 border border-gray-300 rounded-md mb-3" oninput="wizardCheckIngredients()">
+                                <p class="text-xs text-gray-500 italic mt-auto">Define el producto y la cantidad a elaborar.</p>
+                            </div>
+                            
+                            <!-- Paso 2 -->
+                            <div class="border rounded-lg p-4 bg-gray-50 flex flex-col">
+                                <h3 class="font-bold text-[#005B3A] mb-3"><span class="bg-[#005B3A] text-white rounded-full w-6 h-6 inline-flex items-center justify-center mr-2">2</span> Verificación MRP</h3>
+                                <div id="wizard-mrp-status" class="text-sm text-gray-600 h-32 overflow-y-auto bg-white p-2 border border-gray-200 rounded mb-2 shadow-inner">
+                                    Selecciona un producto y cantidad para verificar disponibilidad de materia prima.
+                                </div>
+                                <p class="text-xs text-gray-500 italic mt-auto">Asegura que haya materia prima en inventario.</p>
+                            </div>
+                            
+                            <!-- Paso 3 -->
+                            <div class="border rounded-lg p-4 bg-gray-50 flex flex-col">
+                                <h3 class="font-bold text-[#005B3A] mb-3"><span class="bg-[#005B3A] text-white rounded-full w-6 h-6 inline-flex items-center justify-center mr-2">3</span> Asignar Tanque e Iniciar</h3>
+                                <select id="wizard-tank" class="w-full p-2 border border-gray-300 rounded-md mb-3">
+                                    <option value="">-- Selecciona Tanque Libre --</option>
+                                </select>
+                                <button onclick="wizardStartProduction()" class="w-full bg-[#005B3A] text-white font-bold py-2 rounded-md hover:bg-[#00422a] transition-colors shadow-md mt-auto"><i class="fas fa-play-circle mr-2"></i> Iniciar Producción</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controles de Inventario de Lotes Rápidos (Mantenemos por si es útil crear lote manual) -->
+                    <div class="mt-6 bg-white p-4 rounded shadow-sm border border-gray-200 flex flex-wrap gap-4 items-end">
+                        <h3 class="w-full font-bold text-sm text-gray-500 mb-2 border-b pb-1">Creación Manual de Lote Terminado (Sin paso a paso)</h3>
+                        <div class="flex gap-2 items-end">
+                            <select id="batch-product-select" class="p-1 border rounded w-32 text-sm"><option value="">Producto</option></select>
+                            <select id="batch-warehouse-select" class="p-1 border rounded w-32 text-sm"><option value="">Bodega</option></select>
+                            <input type="text" id="batch-lot" placeholder="Lote" class="p-1 border rounded w-20 text-sm">
+                            <input type="number" id="batch-qty" placeholder="Cant" class="p-1 border rounded w-16 text-sm">
+                            <input type="date" id="batch-manufacture-date" class="p-1 border rounded text-sm">
+                            <button onclick="createBatchFromUI()" class="bg-gray-600 text-white px-2 py-1 rounded text-sm">Crear Lote</button>
+                        </div>
+                        <div class="flex gap-2 items-end border-l pl-4 ml-auto">
+                            <input type="text" id="warehouse-name" placeholder="Bodega" class="p-1 border rounded w-24 text-sm">
+                            <input type="text" id="warehouse-location" placeholder="Ubicación" class="p-1 border rounded w-24 text-sm">
+                            <button onclick="createWarehouse()" class="bg-gray-600 text-white px-2 py-1 rounded text-sm">Crear Bodega</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Seguimiento -->
+                <div id="tab-seguimiento" class="hidden fade-in">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                        <!-- Producciones Activas (Tanques) -->
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+                            <h2 class="text-xl font-bold mb-4 text-[#005B3A]"><i class="fas fa-industry"></i> Lotes en Fermentación / Maduración</h2>
+                            <div id="tracking-active-list" class="space-y-4">
+                                <!-- Lotes inyectados por JS -->
+                            </div>
+                        </div>
+
+                        <!-- Producciones Finalizadas (Historial de Lotes terminados recientemente) -->
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+                            <h2 class="text-xl font-bold mb-4 text-gray-700"><i class="fas fa-clipboard-check"></i> Producciones Finalizadas</h2>
+                            <div id="tracking-history-list" class="space-y-2 max-h-[500px] overflow-y-auto pr-2">
+                                <!-- Historial inyectado por JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual de Tanques Opcional -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
+                        <h2 class="text-lg font-bold mb-4 text-gray-600"><i class="fas fa-eye"></i> Vista Gráfica de Tanques</h2>
+                        <div id="tanks-visual-container" class="flex flex-wrap gap-6 justify-center">
+                            <!-- Tanques SVG renderizados via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Planeación (MPS/MRP) -->
+                <div id="tab-planeacion" class="hidden fade-in">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold text-[#005B3A]"><i class="fas fa-calendar-alt"></i> Planeación a 4 Semanas</h2>
+                        <button onclick="runProductionFlow()" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded font-bold shadow-md"><i class="fas fa-play mr-2"></i> Ejecutar Cálculo MPS/MRP</button>
+                    </div>
+                    
+                    <div id="production-output" class="mb-4">
+                        <p class="text-gray-500 italic text-sm">Haz clic en "Ejecutar Cálculo MPS/MRP" para simular la planeación basada en pedidos, pronósticos y recetas.</p>
+                    </div>
+                    
+                    <div id="production-summary-area" class="grid gap-4 mb-6">
+                        <div id="production-kpis" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
+                        <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+                            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 overflow-x-auto">
+                                <h3 class="text-lg font-bold mb-3 text-gray-700">Litros producidos en las 4 semanas</h3>
+                                <div id="production-volume-table"></div>
+                            </div>
+                            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 overflow-x-auto">
+                                <h3 class="text-lg font-bold mb-3 text-gray-700">Resumen demanda solicitada por semana</h3>
+                                <div id="production-demand-table"></div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 overflow-x-auto">
+                            <h3 class="text-lg font-bold mb-3 text-gray-700">Pronóstico ventas y balance de inventario — botellas</h3>
+                            <div id="production-inventory-table"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 xl:grid-cols-4 gap-4 mb-6" id="kpi-container">
+                        <!-- KPIs -->
+                    </div>
+                    
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 mb-6 overflow-x-auto">
+                        <h3 class="text-lg font-bold mb-3 text-gray-700">Programa Maestro de Producción (MPS)</h3>
+                        <div id="mps-table-container"></div>
+                    </div>
+                    
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 overflow-x-auto">
+                        <h3 class="text-lg font-bold mb-3 text-gray-700">Plan de Requerimientos de Materiales (MRP)</h3>
+                        <div id="mrp-table-container"></div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para Añadir/Editar Producto -->
+    <div id="product-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-8 rounded-lg w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-4">Añadir al Inventario</h2>
+            <form id="product-form" onsubmit="saveProduct(event)">
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-bold mb-1">Categoría</label>
+                    <select id="product-type" required class="w-full p-2 border border-gray-300 rounded-md bg-gray-50" onchange="handleProductTypeChange()">
+                        <option value="final">Producto para Ventas (Cerveza, etc.)</option>
+                        <option value="raw">Materia Prima para Producción (Malta, Botellas, etc.)</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="mb-4">
+                        <label class="block text-gray-700">SKU (Código)</label>
+                        <input type="text" id="product-sku" required class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Nombre</label>
+                        <input type="text" id="product-name" required class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="mb-4">
+                        <label id="product-price-label" class="block text-gray-700 font-bold">Precio de Venta</label>
+                        <input type="number" id="product-price" step="0.01" required class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4 hidden" id="product-supplier-div">
+                        <label class="block text-gray-700">Proveedor</label>
+                        <select id="product-supplier" class="w-full p-2 border border-gray-300 rounded-md">
+                            <option value="">-- Selecciona proveedor --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Volumen por unidad (L)</label>
+                    <input type="number" id="product-volume" step="0.01" value="1" required class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Cantidad Inicial</label>
+                    <input type="number" id="product-quantity" required class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4 hidden" id="product-safety-stock-div">
+                    <label class="block text-gray-700">Cantidad mínima para alerta</label>
+                    <input type="number" id="product-safety-stock" step="0.01" value="0" class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" onclick="closeProductModal()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-[#005B3A] text-white rounded-md hover:bg-[#00422a]">Guardar</button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <!-- Carrito Overlay -->
-    <div id="cartOverlay" class="cart-overlay" onclick="toggleCart()"></div>
+    <!-- Modal de Notificaciones -->
+    <div id="notifications-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white p-8 rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold">Alertas y Notificaciones</h2>
+                <button onclick="closeNotificationsModal()" class="text-gray-500 hover:text-gray-700"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <div id="notifications-list" class="space-y-3">
+                <!-- Alertas dinámicas -->
+            </div>
+            <div class="mt-6 flex justify-end">
+                <button onclick="closeNotificationsModal()" class="px-4 py-2 bg-[#005B3A] text-white rounded-md hover:bg-[#00422a]">Cerrar</button>
+            </div>
+        </div>
+    </div>
 
-    <!-- Carrito Panel -->
-    <div id="cartPanel" class="cart-panel">
-        <div style="padding:24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
-            <h3 class="font-heading" style="font-size:20px;font-weight:600;"><i class="fas fa-shopping-bag" style="margin-right:8px;color:var(--accent);"></i>Tu carrito</h3>
-            <button onclick="toggleCart()" style="background:none;border:none;color:var(--fg-muted);cursor:pointer;font-size:20px;padding:4px;" aria-label="Cerrar carrito">
-                <i class="fas fa-times"></i>
-            </button>
+    <!-- Modal para Añadir/Editar Cliente -->
+    <div id="client-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white p-8 rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <h2 class="text-2xl font-bold mb-4">Registrar Nuevo Cliente</h2>
+            <form id="client-form" onsubmit="saveClient(event)">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Tipo de Documento</label>
+                        <select id="client-tipo-doc" required class="w-full p-2 border border-gray-300 rounded-md">
+                            <option value="31">NIT</option>
+                            <option value="13">Cédula de Ciudadanía</option>
+                            <option value="11">Registro Civil</option>
+                            <option value="12">Tarjeta de Identidad</option>
+                            <option value="21">Tarjeta de Extranjería</option>
+                            <option value="41">Pasaporte</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Número de Documento (NIT/CC)</label>
+                        <input type="text" id="client-num-doc" required class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Dígito de Verificación (DV)</label>
+                        <input type="text" id="client-dv" maxlength="1" class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Razón Social</label>
+                        <input type="text" id="client-razon-social" required class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4 md:col-span-2">
+                        <label class="block text-gray-700">Nombre Comercial</label>
+                        <input type="text" id="client-nombre-comercial" class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Departamento</label>
+                        <input type="text" id="client-departamento" required class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Ciudad</label>
+                        <input type="text" id="client-ciudad" required class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4 md:col-span-2">
+                        <label class="block text-gray-700">Dirección</label>
+                        <input type="text" id="client-direccion" required class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Teléfono</label>
+                        <input type="tel" id="client-telefono" required class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Correo Electrónico</label>
+                        <input type="email" id="client-correo" required class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                </div>
+                <div class="flex justify-end gap-2 mt-6">
+                    <button type="button" onclick="closeClientModal()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-[#005B3A] text-white rounded-md hover:bg-[#00422a]">Guardar</button>
+                </div>
+            </form>
         </div>
-        <div id="cartItems" style="flex:1;overflow-y:auto;padding:16px 24px;">
-            <!-- Se llena con JS -->
+    </div>
+
+    <!-- Modal para Añadir/Editar Proveedor -->
+    <div id="supplier-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white p-8 rounded-lg w-full max-w-lg">
+            <h2 class="text-2xl font-bold mb-4">Registrar Proveedor</h2>
+            <form id="supplier-form" onsubmit="saveSupplier(event)">
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-bold mb-1">Tipo de Persona</label>
+                    <select id="supplier-type" required class="w-full p-2 border border-gray-300 rounded-md">
+                        <option value="empresa">Empresa (Jurídica)</option>
+                        <option value="persona">Persona Natural</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">NIT o Cédula</label>
+                    <input type="text" id="supplier-nit" required class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Razón Social / Nombre Completo</label>
+                    <input type="text" id="supplier-name" required class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Teléfono</label>
+                        <input type="tel" id="supplier-phone" required class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Correo</label>
+                        <input type="email" id="supplier-email" class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                </div>
+                <div class="flex justify-end gap-2 mt-4">
+                    <button type="button" onclick="closeSupplierModal()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-[#005B3A] text-white rounded-md hover:bg-[#00422a]">Guardar</button>
+                </div>
+            </form>
         </div>
-        <div id="cartFooter" style="padding:20px 24px;border-top:1px solid var(--border);display:none;">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-                <span style="color:var(--fg-muted);font-size:14px;">Subtotal</span>
-                <span id="cartSubtotal" style="font-family:'Space Grotesk';font-weight:600;">$0</span>
+    </div>
+
+    <!-- Modal para Definir Receta (BOM) -->
+    <div id="recipe-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white p-8 rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <h2 id="recipe-modal-title" class="text-2xl font-bold mb-4">Definir Receta (BOM)</h2>
+            <form id="recipe-form" onsubmit="saveRecipe(event)">
+                <div class="mb-4">
+                    <label class="block text-gray-700">Producto Final</label>
+                    <select id="recipe-product-select" required class="w-full p-2 border border-gray-300 rounded-md">
+                        <option value="">-- Selecciona producto final --</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="block text-gray-700">Ingredientes (SKU, Cantidad por unidad de volumen)</label>
+                        <button type="button" onclick="addIngredientRow()" class="text-[#005B3A] hover:text-[#00422a] text-sm font-semibold"><i class="fas fa-plus"></i> Añadir Ingrediente</button>
+                    </div>
+                    <div id="recipe-ingredients-container" class="space-y-2">
+                        <!-- Las filas de ingredientes se añadirán aquí -->
+                    </div>
+                </div>
+                <div class="flex justify-end gap-2 mt-6">
+                    <button type="button" onclick="closeRecipeModal()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-[#005B3A] text-white rounded-md hover:bg-[#00422a]">Guardar Receta</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Listado de Recetas Guardadas -->
+    <div id="recipe-list-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white p-8 rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold">Recetas Guardadas</h2>
+                <button onclick="closeRecipeListModal()" class="text-gray-500 hover:text-gray-700"><i class="fas fa-times text-xl"></i></button>
             </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-                <span style="color:var(--fg-muted);font-size:14px;">Envío</span>
-                <span style="font-family:'Space Grotesk';font-weight:600;color:var(--accent);">Calculado al pagar</span>
+            <div id="recipe-list-container" class="space-y-4">
+                <!-- Lista de recetas generada dinámicamente -->
             </div>
-            <div style="display:flex; flex-direction:column; gap:8px;">
-                <button onclick="handleCheckout('whatsapp')" class="btn-primary" style="width:100%;font-size:15px;padding:14px;">
-                    <i class="fab fa-whatsapp" style="margin-right:8px;"></i>Acordar por WhatsApp
+            <div class="mt-6 flex justify-end">
+                <button onclick="closeRecipeListModal()" class="px-4 py-2 bg-[#005B3A] text-white rounded-md hover:bg-[#00422a]">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Gestionar Tanques -->
+    <div id="tank-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white p-8 rounded-lg w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-4">Añadir Tanque</h2>
+            <form id="tank-form" onsubmit="saveTank(event)">
+                <div class="mb-4">
+                    <label class="block text-gray-700">Nombre del Tanque</label>
+                    <input type="text" id="tank-name" required placeholder="Ej. Tanque Fermentador A" class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Capacidad (Litros)</label>
+                    <input type="number" id="tank-capacity" required step="0.01" placeholder="Ej. 1000" class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="flex justify-end gap-2 mt-6">
+                    <button type="button" onclick="closeTankModal()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-[#005B3A] text-white rounded-md hover:bg-[#00422a]">Guardar Tanque</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Información del Tanque -->
+    <div id="tank-info-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white p-8 rounded-lg w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold text-gray-800" id="tank-info-title">Detalles del Tanque</h2>
+                <button onclick="closeTankInfoModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
                 </button>
-                <button onclick="handleCheckout('nequi')" style="width:100%;font-size:15px;padding:14px;background:#DA0081;color:white;border:none;border-radius:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:600;transition:opacity 0.3s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
-                    <i class="fas fa-mobile-alt" style="margin-right:8px;"></i>Pagar con Nequi
+            </div>
+            <div id="tank-info-content" class="text-gray-700 text-sm space-y-3">
+                <!-- Información inyectada dinámicamente -->
+            </div>
+            <div class="mt-6 flex justify-end">
+                <button onclick="closeTankInfoModal()" class="px-4 py-2 bg-[#005B3A] text-white rounded-md hover:bg-[#00422a]">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Asignación Manual de Lote en Tanque -->
+    <div id="tank-schedule-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white p-8 rounded-lg w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-4" id="tank-schedule-title">Asignar Lote a Tanque</h2>
+            <form id="tank-schedule-form" onsubmit="saveTankSchedule(event)">
+                <input type="hidden" id="tank-schedule-id">
+                <input type="hidden" id="tank-schedule-edit">
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700">Producto a Fermentar</label>
+                    <select id="tank-schedule-product" required class="w-full p-2 border border-gray-300 rounded-md">
+                        <option value="">-- Selecciona Producto --</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Volumen (Litros)</label>
+                    <input type="number" id="tank-schedule-qty" required step="0.01" class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Días Fermentación</label>
+                        <input type="number" id="tank-schedule-fermentation-days" required step="1" min="1" value="8" onchange="suggestTankScheduleEnd()" class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Días Embazado</label>
+                        <input type="number" id="tank-schedule-bottling-days" required step="1" min="0" value="2" onchange="suggestTankScheduleEnd()" class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Días Empaquetado</label>
+                        <input type="number" id="tank-schedule-packaging-days" required step="1" min="0" value="1" onchange="suggestTankScheduleEnd()" class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Fecha Inicio</label>
+                        <input type="date" id="tank-schedule-start" required class="w-full p-2 border border-gray-300 rounded-md" onchange="suggestTankScheduleEnd()">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Fecha Estimada Fin</label>
+                        <input type="date" id="tank-schedule-end" required class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                </div>
+                <div class="flex justify-end gap-2 mt-6">
+                    <button type="button" onclick="closeTankScheduleModal()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-[#005B3A] text-white rounded-md hover:bg-[#00422a]">Guardar Lote</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Modal de Información de la Bodega (Lista de Lotes) -->
+    <div id="warehouse-info-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white p-8 rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold text-gray-800" id="warehouse-info-title">Detalles de Bodega</h2>
+                <button onclick="closeWarehouseInfoModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
                 </button>
             </div>
-            <button onclick="clearCart()" style="width:100%;margin-top:8px;background:none;border:none;color:var(--fg-muted);cursor:pointer;font-size:13px;padding:8px;transition:color 0.3s;" onmouseover="this.style.color='var(--danger)'" onmouseout="this.style.color='var(--fg-muted)'">
-                Vaciar carrito
-            </button>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="p-3 border-b">Lote</th>
+                            <th class="p-3 border-b">Producto</th>
+                            <th class="p-3 border-b">Cantidad</th>
+                            <th class="p-3 border-b">Fecha Elaboración</th>
+                            <th class="p-3 border-b">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="warehouse-info-body">
+                        <!-- Lotes inyectados dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-6 flex justify-end">
+                <button onclick="closeWarehouseInfoModal()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cerrar</button>
+            </div>
         </div>
     </div>
 
-    <!-- Modal de producto -->
-    <div id="productModal" class="modal-overlay" onclick="if(event.target===this)closeModal()">
-        <div class="modal-content" id="modalContent">
-            <!-- Se llena con JS -->
+    <!-- Modal para Edición de Lote Individual -->
+    <div id="batch-edit-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white p-8 rounded-lg w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-4">Editar Lote</h2>
+            <form id="batch-edit-form" onsubmit="saveBatchEdit(event)">
+                <input type="hidden" id="edit-batch-id">
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700">Producto</label>
+                    <input type="text" id="edit-batch-product-name" disabled class="w-full p-2 border border-gray-300 rounded-md bg-gray-100 text-gray-600">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Código del Lote</label>
+                        <input type="text" id="edit-batch-lot" required class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Cantidad</label>
+                        <input type="number" id="edit-batch-qty" required step="1" class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Fecha de Elaboración</label>
+                    <input type="date" id="edit-batch-date" required class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Ubicación (Bodega)</label>
+                    <select id="edit-batch-warehouse" required class="w-full p-2 border border-gray-300 rounded-md">
+                        <option value="">-- Selecciona Bodega --</option>
+                    </select>
+                </div>
+                
+                <div class="flex justify-end gap-2 mt-6">
+                    <button type="button" onclick="closeBatchEditModal()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700">Guardar Cambios</button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <!-- Toast Container -->
-    <div id="toastContainer" class="toast-container"></div>
+    <!-- Print Area for PDFs -->
+    <div id="print-area" class="hidden bg-white text-black p-8"></div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <script src="funciones.js"></script>
 </body>
 </html>
